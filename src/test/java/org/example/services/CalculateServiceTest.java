@@ -1,4 +1,4 @@
-package org.example.Services;
+package org.example.services;
 
 import de.jollyday.HolidayManager;
 import org.example.exeptions.CustomDateException;
