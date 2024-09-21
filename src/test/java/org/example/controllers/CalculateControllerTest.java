@@ -3,7 +3,7 @@ package org.example.controllers;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import org.example.utils.CalculateUtils;
+import org.example.Services.CalculateService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(CalculateController.class)
 public class CalculateControllerTest {
     @MockBean
-    private CalculateUtils calculateUtils;
+    private CalculateService calculateService;
 
     @Autowired
     private MockMvc mockMvc;
