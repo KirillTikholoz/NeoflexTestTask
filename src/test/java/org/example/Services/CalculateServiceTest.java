@@ -1,4 +1,4 @@
-package org.example.utils;
+package org.example.Services;
 
 import de.jollyday.HolidayManager;
 import org.example.exeptions.CustomDateException;
@@ -12,16 +12,16 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDate;
 
 @ExtendWith(MockitoExtension.class)
-public class CalculateUtilsTest {
+public class CalculateServiceTest {
     @Mock
     private HolidayManager holidayManager;
 
     @InjectMocks
-    private CalculateUtils calculateUtils;
+    private CalculateService calculateService;
 
     @Test
     public void simpleCalculate(){
-        String res = calculateUtils.simpleCalculateVacationPay(60000.00, 10);
+        String res = calculateService.simpleCalculateVacationPay(60000.00, 10);
         Assertions.assertEquals("20477,82", res);
     }
 
@@ -29,7 +29,7 @@ public class CalculateUtilsTest {
     public void accurateCalculate() throws CustomDateException {
         LocalDate startDate = LocalDate.parse("2024-09-01");
         LocalDate endDate = LocalDate.parse("2024-09-10");
-        String res = calculateUtils.accurateCalculateVacationPay(60000.00,
+        String res = calculateService.accurateCalculateVacationPay(60000.00,
                                                                  10,
                                                                   startDate,
                                                                   endDate);
@@ -41,7 +41,7 @@ public class CalculateUtilsTest {
         LocalDate startDate = LocalDate.parse("2024-09-11");
         LocalDate endDate = LocalDate.parse("2024-09-10");
         Assertions.assertThrows(CustomDateException.class, () ->
-                calculateUtils.accurateCalculateVacationPay(60000.00, 10, startDate, endDate));
+                calculateService.accurateCalculateVacationPay(60000.00, 10, startDate, endDate));
     }
 
     @Test
@@ -49,6 +49,6 @@ public class CalculateUtilsTest {
         LocalDate startDate = LocalDate.parse("2024-09-01");
         LocalDate endDate = LocalDate.parse("2024-09-10");
         Assertions.assertThrows(CustomDateException.class, () ->
-                calculateUtils.accurateCalculateVacationPay(60000.00, 33, startDate, endDate));
+                calculateService.accurateCalculateVacationPay(60000.00, 33, startDate, endDate));
     }
 }

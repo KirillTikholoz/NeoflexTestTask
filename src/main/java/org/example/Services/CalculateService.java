@@ -1,18 +1,18 @@
-package org.example.utils;
+package org.example.Services;
 
 import de.jollyday.HolidayManager;
 import lombok.RequiredArgsConstructor;
 import org.example.exeptions.CustomDateException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.Period;
 
-@Component
+@Service
 @RequiredArgsConstructor
-public class CalculateUtils {
+public class CalculateService {
 
     private final HolidayManager holidayManager;
 

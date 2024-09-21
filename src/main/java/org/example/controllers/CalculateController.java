@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.dtos.ResponseCalculateDto;
 import org.example.exeptions.CustomDateException;
-import org.example.utils.CalculateUtils;
+import org.example.Services.CalculateService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,13 +28,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Validated
 public class CalculateController {
-    private final CalculateUtils calculateUtils;
+    private final CalculateService calculateService;
 
     @GetMapping(value = "/calculacte", params = {"avgSalary", "countVacationDays"})
     public ResponseEntity<ResponseCalculateDto> simpleCalculate(@RequestParam @Positive Double avgSalary,
                                                                 @RequestParam @Positive Integer countVacationDays) {
 
-        String vacationPay = calculateUtils.simpleCalculateVacationPay(avgSalary, countVacationDays);
+        String vacationPay = calculateService.simpleCalculateVacationPay(avgSalary, countVacationDays);
 
         return ResponseEntity.ok(new ResponseCalculateDto(vacationPay));
     }
@@ -47,7 +47,7 @@ public class CalculateController {
             @RequestParam @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate endDate
             ) throws CustomDateException {
 
-        String vacationPay = calculateUtils.accurateCalculateVacationPay(avgSalary,
+        String vacationPay = calculateService.accurateCalculateVacationPay(avgSalary,
                 countVacationDays,
                 startDate,
                 endDate);
